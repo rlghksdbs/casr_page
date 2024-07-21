@@ -1,3 +1,5 @@
-## IAM-VFI : Interpolate Any Motion for Video Frame Interpolation with motion complexity map [ECCV 2024]
+## CASR : Efficient Cascade Network Structure with Channel Aligned method for 4K Real-Time Single Image Super-Resolution [CVPRW 2024]
 
-### [IAM-VFI code](https://github.com/rlghksdbs/IAM-VFI)
+## Achieve 1st Place in CVPR2024 Workshop [AIS2024](https://ai4streaming-workshop.github.io/) RTSR Challenge 🎉
+
+### [CASR code](https://github.com/rlghksdbs/CASR)

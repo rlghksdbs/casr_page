@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="description"
         content="Video Frame Interpolation.">
-  <meta name="keywords" content="Video Frame Interpolation, Optical Flow Estimation, Region-Aware, VFI">
+  <meta name="keywords" content="Single Image Super-Resolution, Real-Time Super-Resolution, SISR, RTSR">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>IAM-VFI : Interpolate Any Motion for Video Frame Interpolation with motion complexity map</title>
+  <title>CASR : Efficient Cascade Network Structure with Channel Aligned method for 4K Real-Time Single Image Super-Resolution</title>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
@@ -63,8 +63,11 @@
           More Research
         </a>
         <div class="navbar-dropdown">
-          <a class="navbar-item" href="https://github.com/rlghksdbs/CASR">
-            CASR
+          <a class="navbar-item" href="https://rlghksdbs.github.io/iam-vfi_page">
+            IAM-VFI
+          </a>
+          <a class="navbar-item" href="https://rlghksdbs.github.io/lrsrn_page">
+            LRSRN
           </a>
         </div>
       </div>
@@ -79,17 +82,19 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">IAM-VFI : Interpolate Any Motion for Video Frame Interpolation with motion complexity map</h1>
+          <h1 class="title is-1 publication-title">CASR : Efficient Cascade Network Structure with Channel Aligned method for 4K Real-Time Single Image Super-Resolution</h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
-              <a href="https://scholar.google.com/citations?user=LLLbCIQAAAAJ&hl=ko&oi=sra">Kihwan Yoon</a><sup>1</sup>,</span>
+              <a href="https://scholar.google.com/citations?user=LLLbCIQAAAAJ&hl=ko&oi=sra">Kihwan Yoon</a><sup>1*</sup>,</span>
             <span class="author-block">
-              Yong Han Kim</a><sup>1</sup>,</span>
-            <span class="author-block">
-              Sungjei Kim</a><sup>2</sup>,
+              <a href="https://scholar.google.com/citations?user=PR4pvCMAAAAJ&hl=ko&oi=sra">Ganzorig Gankuyag</a><sup>2*</sup>,
             </span>
+              <span class="author-block">
+              Jinman Park</a><sup>2</sup>,</span>
             <span class="author-block">
-              <a href="https://scholar.google.com/citations?user=-DlLMawAAAAJ&hl=ko&oi=sra">Jinwoo Jeong</a><sup>2</sup>,
+              Haeng Seon Son</a><sup>2</sup>,</span>
+            <span class="author-block">
+              Kyoungwon Min</a><sup>2</sup>,
             </span>
           </div>
 
@@ -98,11 +103,15 @@
             <span class="author-block"><sup>2</sup>Korea Electronics Technology Institute</span>
           </div>
 
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>*</sup>equal contribution</span>
+          </div>
+
           <div class="column has-text-centered">
             <div class="publication-links">
               <!-- PDF Link. -->
               <span class="link-block">
-                <a href="https://arxiv.org/pdf/2011.12948"
+                <a href=""
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fas fa-file-pdf"></i>
@@ -112,12 +121,42 @@
               </span>
               <!-- Code Link. -->
               <span class="link-block">
-                <a href="https://https://github.com/rlghksdbs/IAM-VFI"
+                <a href="https://github.com/rlghksdbs/CASR.git"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-github"></i>
                   </span>
                   <span>Code</span>
+                  </a>
+              </span>
+              <!-- Presentation Link. -->
+              <span class="link-block">
+                <a href="https://youtu.be/BDkenaEL7ao"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                  </a>
+              </span>
+              <!-- Poster Link. -->
+              <span class="link-block">
+                <a href="https://drive.google.com/file/d/1VT82c9WSLT6abWeX-eACAgRAtRWBisLk/view"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Poster</span>
+                  </a>
+              </span>
+              <!-- Report Paper. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2404.16484"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Challenge Report</span>
                   </a>
               </span>
             </div>
@@ -129,21 +168,6 @@
   </div>
 </section>
 
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <video id="teaser" autoplay muted loop playsinline height="100%">
-        <source src="./static/videos/iam-vfi.mp4"
-                type="video/mp4">
-      </video>
-      <h2 class="subtitle has-text-centered">
-        <span class="dnerf">IAM-VFI</span> Demo Video
-      </h2>
-    </div>
-  </div>
-</section>
-
-
 <section class="section">
   <div class="container is-max-desktop">
     <!-- Abstract. -->
@@ -152,43 +176,52 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Within the video, different regions have varying motion complexity, 
-            with simple regions containing static or global motion and complex 
-            regions containing fast motion or lots of local motion. 
-            In recent years, the performance of flow-based Video Frame Interpolation (VFI) algorithms has improved significantly. 
-            However, existing training methods train on randomly cropped regions of train data without considering the complexity of the motion. 
-            As a result, they cannot handle all regions of the frame that contain varying motion complexity.          </p>
-          <p>
-            To solve this problem, we propose a novel VFI approach (IAM-VFI) 
-            that can interpolate any motion by considering the motion complexity of all regions in the frame. 
-            First, we propose a training data classification method for motion optimization based on each motion complexity.
-             Then, using the proposed data, a flow estimation network generates optimized results for each complexity. 
-             Finally, we propose a Motion Complexity Estimation Network (MCENet) to generate a 
-             Motion Complexity Map (MCM) that can estimate the motion complexity of each region. 
+            Recent advances in display technology have led to the widespread use of 1080p (FHD) and 4K (UHD) displays, 
+            increasing the importance of single-image super-resolution (SISR), a technique that uses low-resolution images to create high-resolution images. 
+            Existing research on SISR has focused on improving the accuracy in constructing deep learning networks with significant computational complexity. 
+            However, since devices such as TVs, VR headsets, and autonomous systems have limited memory, it is necessary to research real-time image super-resolution.           
           </p>
           <p>
-            Our proposed methods can be easily applied to most flow-based VFI algorithms. 
-            Experimental results show that the proposed method can interpolate any motion and 
-            significantly improve the performance of existing VFI algorithms.
-
+            In this paper, we propose CASR, an image super-resolution network that transforms compressed low-resolution images into 4K images in real-time. 
+            We propose a cascade upsampling with channel alignment method for upsampling, and reparameterization convolution layer to improve the performance 
+            of the network without any additional computational cost. In addition, we used the distillation method to improve performance and time. 
+          </p>
+          <p>
+            Experimental results show that the proposed network achieves 22.80 dB PSNR and 0.56 ms inference time on RTX 3090 devices when 
+            evaluated on the AIS 2024 real-time super-resolution validation scale X4 dataset.        
+            The code is available at <a href="https://github.com/rlghksdbs/CASR">https://github.com/rlghksdbs/CASR</a>
           </p>
         </div>
       </div>
     </div>
-    <!--/ Abstract. -->
-  </section>
+      <!--/ Abstract. -->
+
+    <!-- Paper video. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/BDkenaEL7ao?si=Tq-WVtnOYwxl7mTs" 
+          title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+    <!--/ Paper video. -->
+  </div>
+</section>
 
 <section class="section">
   <div class="container is-max-desktop">
-    <h2 class="title is-3">Network Architecture</h2>
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <image src="./static/images/IAM-VFI.png" class="img-responsive" alt="IAM-VFI"><br>
-        <image src="./static/images/MCENet.png" class="img-responsive" alt="IAM-VFI"><br>
+        <h2 class="title is-3">Network Architecture</h2>
+        <image src="./static/images/CASR_train.png" class="img-responsive" alt="IAM-VFI"><br>
+        <image src="./static/images/CASR_test.png" class="img-responsive" alt="IAM-VFI"><br>
         <div class="content has-text-justified">
           <p>
-            <b>Top (IAM-VFI) :</b> The architecture of IAM-Net. <br>
-            <b>Bottom (MCENet) :</b>
+            <b>Top :</b> CASR train stage. <br>
+            <b>Bottom : </b> CASR test stage.</br>
           </p>
         </div>
       </div>
@@ -198,15 +231,57 @@
 
 <section class="section">
   <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+      <h2 class="title is-3">Qualitative Results</h2>
+        <image src="./static/images/qualitative_results.png" class="img-responsive" alt="IAM-VFI"><br>
+        <div class="content has-text-justified">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <!-- Challenge Report. -->
+      <div class="column is-four-fifths">
+          <h2 class="title is-3">AIS2024 Challenge Results</h2>
+          <image src="./static/images/Challenge_Results.png" class="img-responsive" alt="IAM-VFI"><br>
+        </div>
+      </div>
+      <!--/ Challenge Report. -->
+
+      <!-- Diploma. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">AIS2024 Challenge Diploma</h2>
+        <div class="columns is-centered">
+          <div class="column content">
+            <p>
+
+            </p>
+            <image src="./static/images/Challenge_diploma.PNG" class="img-responsive" alt="IAM-VFI"><br>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/ Diploma. -->
+  </section>
+
+<section class="section">
+  <div class="container is-max-desktop">
     <!-- Concurrent Work. -->
     <div class="columns is-centered">
       <div class="column is-full-width">
         <h2 class="title is-3">Acknowledgement</h2>
-
         <div class="content has-text-justified">
           <p>
-            This work was supported by Institute of Information \& communications Technology Planning \& Evaluation (IITP) grant funded by the Korea government (MSIT) 
-            (No. 2021-0-00087, Development of high-quality conversion technology for SD/HD low-quality media)      
+            This work was supported by The KEIT(Korea planning \& Evaluation Institute of Industrial Technology) grant funded by the Korea government(MOTIE) 
+            (No.20014107, Development of 3D camera technology with fusion of thermal images to cope with the night and day environment)    
           </p>
         </div>
       </div>
